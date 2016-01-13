@@ -1,8 +1,32 @@
 <ion-view title="New Goal">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <div>
-            <p>You want to:</p>
-        </div>
-        <h3>Your Goal</h3>
+        <ion-form>
+            <label class="item item-input">
+                <input type="text" placeholder="What do you want to achieve? eg:'make more pancakes'" ng-model="newGoal.goalTitle">
+            </label>
+            <label class="item item-input">
+            		<span>Deadline:  </span>
+                <input type="date" placeholder="" ng-model="newGoal.deadline">
+            </label>
+            <ion-toggle ng-model="newGoal.measurable" toggle-class="toggle-calm" class="no-border">Is this measurable?</ion-toggle>
+            <div ng-show="newGoal.measurable">
+                <label class="item item-input no-border">
+                    <span class="input-label">Unit of measure: </span>
+                    <input type="text" placeholder='eg: "km", "no. of pancakes made"' ng-model="newGoal.measureUnit">
+                </label>
+            </div>
+            <div>
+                <ion-toggle ng-model="newGoal.hasRegTask" toggle-class="toggle-calm" class="no-border">Is there a task to regularly do?</ion-toggle>
+                <div ng-show="newGoal.hasRegTask">
+                    <label class="item item-input no-border">
+                        <span class="input-label">Regular task:</span>
+                        <input type="text" placeholder='eg: "Make some pancakes"' ng-model="newGoal.subTask">
+                    </label>
+                </div>
+            </div>
+            <ion-button ng-click="saveGoal()" class='button center'>Add Goal</ion-button>
+        </ion-form>
+
+        {{ newGoal}}
     </ion-content>
 </ion-view>

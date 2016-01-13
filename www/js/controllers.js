@@ -1,7 +1,4 @@
 angular.module('app.controllers', [])
-  
-
-
 
 
 .controller('mainCtrl', function($scope, userService){
@@ -9,15 +6,6 @@ angular.module('app.controllers', [])
 		userService.logoutUser();
 	}
 })
-
-
-
-
-
-
-
-
-
 
 
 .controller('signupCtrl', function($scope, $firebaseAuth, userService) {
@@ -96,6 +84,9 @@ angular.module('app.controllers', [])
 })
       
 .controller('newGoalCtrl', function($scope) {
+
+	$scope.newGoal = {};
+	
 
 })
  
