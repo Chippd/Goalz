@@ -1,0 +1,15 @@
+.centerText {
+	text-align: center !important;
+}
+
+
+h1,h2,h3,h4,h5 {
+	font-weight: 300;
+}
+
+
+.cust-center-ion-content3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
