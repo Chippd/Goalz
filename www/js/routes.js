@@ -47,8 +47,8 @@ angular.module('app.routes', [])
     
       
         
-    .state('menu.goal', {
-        url: '/viewgoal',
+    .state('menu.viewgoal', {
+        url: '/goals/:viewgoal',
         views: {
           "menu-content": {
             templateUrl: 'templates/goal.html',
@@ -76,6 +76,6 @@ angular.module('app.routes', [])
     ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  // $urlRouterProvider.otherwise('/login');
 
 });
