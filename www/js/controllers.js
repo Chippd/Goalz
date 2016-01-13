@@ -41,14 +41,23 @@ angular.module('app.controllers', [])
     var ref = new Firebase("https://lifegoalz.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
 
-    $scope.loginUser = {'email':'','password':''};
+    $scope.loginUser = {
+        'email': '',
+        'password': ''
+    };
 
-    if(userService.checkUser()){
-    	$state.go('menu.goals');
+    if (userService.checkUser()) {
+        $state.go('menu.goals');
     }
 
 
-    $scope.login = function() {
+    $scope.login = function(inValid) {
+
+        if (inValid) {
+            console.log('form is not valid, no login for you')
+            return
+        }
+
         ref.authWithPassword({
             email: $scope.loginUser.email,
             password: $scope.loginUser.password
@@ -57,8 +66,8 @@ angular.module('app.controllers', [])
                 console.log("Login Failed!", error);
                 alert(error);
             } else {
-            		$scope.loginUser.uid = authData.uid;
-            		userService.setUser($scope.loginUser);
+                $scope.loginUser.uid = authData.uid;
+                userService.setUser($scope.loginUser);
                 console.log("Authenticated successfully with payload:", authData);
                 $state.go('menu.goals')
             }
@@ -70,6 +79,7 @@ angular.module('app.controllers', [])
 
 
 })
+
 
    
 .controller('goalCtrl', function($scope) {
@@ -86,7 +96,7 @@ angular.module('app.controllers', [])
 .controller('newGoalCtrl', function($scope) {
 
 	$scope.newGoal = {};
-	
+
 
 })
  

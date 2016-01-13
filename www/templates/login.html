@@ -1,23 +1,25 @@
 <ion-view title="Login" hide-nav-bar="true">
-    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header" >
-        <form class="list">
+    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header cust-center-ion-content3" >
+        <form class="list" name="loginForm" ng-submit="login(loginForm.$valid)" novalidate>
             <div class="centerText">
                 <h1>Goalz</h1>
-                <p>Log Blerg</p>
+                <p>Log In</p>
             </div>
             <ion-list>
                 <label class="item item-input">
 <!--                     <span class="input-label" >email</span> -->
-                    <input type="text" ng-model="loginUser.email" placeholder="email">
+                    <input type="text" ng-model="loginUser.email" placeholder="email" required>
                 </label>
                 <label class="item item-input">
 <!--                     <span class="input-label" >Password</span> -->
-                    <input type="password" ng-model="loginUser.password" placeholder="password">
+                    <input type="password" ng-model="loginUser.password" placeholder="password" required>
                 </label>
             </ion-list>
             <p ng-show="errorPrompt">Enter valid email and password</p>
-            <a ng-click="login()" class="ng-class:{ 'disabled': loginUser.password.length <1 || loginUser.email.length <1}; button button-balanced button-block ">Log in</a>
+            <a ng-click="login()" class="button button-balanced button-block " ng-disabled="loginForm.$invalid">Log in</a>
         </form>
         <a href="#/signup" class="button button-clear button-block ">Or create an account</a>
     </ion-content>
 </ion-view>
+
+<!-- ng-class:{ 'disabled': loginUser.password.length <1 || loginUser.email.length <1};  -->
