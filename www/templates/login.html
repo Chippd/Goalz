@@ -1,0 +1,19 @@
+<ion-view title="Login">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list">
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label" >email</span>
+                    <input type="text" ng-model="loginUser.email" placeholder="">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label" >Password</span>
+                    <input type="password" ng-model="loginUser.password" placeholder="">
+                </label>
+            </ion-list>
+            <p ng-show="errorPrompt">Enter valid email and password</p>
+            <a ng-click="login()" class="ng-class:{ 'disabled': loginUser.password.length <1 || loginUser.email.length <1}; button button-balanced button-block ">Log in</a>
+        </form>
+        <a href="#/signup" class="button button-light button-block ">Or create an account</a>
+    </ion-content>
+</ion-view>
