@@ -8,7 +8,7 @@ angular.module('app.controllers', [])
 })
 
 
-.controller('signupCtrl', function($scope, $firebaseAuth, userService) {
+.controller('signupCtrl', function($scope, $firebaseAuth, $state, userService) {
 
     var ref = new Firebase("https://lifegoalz.firebaseio.com");
     $scope.authObj = $firebaseAuth(ref);
@@ -38,6 +38,7 @@ angular.module('app.controllers', [])
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 userService.setUser($scope.signupUser);
+                $state.go('menu.goals')
             }
         });
     }
@@ -103,10 +104,54 @@ angular.module('app.controllers', [])
 
 })
       
-.controller('newGoalCtrl', function($scope) {
+.controller('newGoalCtrl', function($scope, $state, $ionicHistory, userService, goals) {
 
-	$scope.newGoal = {};
+	var user = userService.getUser();
+
+	$scope.newGoal = {
+	    alarmText: "",
+	    deadline: "",
+	    goalTitle: "",
+	    measurable: false,
+	    measureUnit: "",
+	    remind: false,
+	    subTask: "",
+	    userId: user.uid
+	};
+
+
+
+	$scope.addGoal = function(isValid){
+
+		if(!isValid){
+			console.log('whoops, form is not valid, no new goal for you');
+			return
+		}
+
+		goals.$add($scope.newGoal);
+		$ionicHistory.nextViewOptions({
+		  disableBack: true
+		});
+		$state.go('menu.goals');
+
+
+	}
 
 
 })
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

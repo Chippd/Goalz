@@ -20,7 +20,7 @@
                     <label class="item item-input">
                         <input type="password" name="password" ng-model="signupUser.password" placeholder="password" required ng-minlength="6">
                     </label>
-                    <p class="centerText" ng-show="signupForm.password.$invalid && !signupForm.password.$pristine" class="help-block">Password must be at least 6 characters long</p>
+                    <p ng-show="signupForm.password.$invalid && !signupForm.password.$pristine" class="help-block centerText">Password must be at least 6 characters long</p>
                 </div>
 
 
@@ -29,7 +29,7 @@
                 <label class="item item-input">
                     <input type="password" name="passwordMatch" ng-model="signupUser.passwordMatch" placeholder="password" required ng-minlength="6">
                 </label>
-                <p ng-show="signupForm.password.$viewValue != signupForm.passwordMatch.$viewValue  && !signupForm.passwordMatch.$pristine" class="help-block">Passwords must match</p>
+                <p ng-show="signupForm.password.$viewValue != signupForm.passwordMatch.$viewValue  && !signupForm.passwordMatch.$pristine" class=" centerText help-block">Passwords must match</p>
 
 
 

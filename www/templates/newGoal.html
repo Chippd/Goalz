@@ -1,32 +1,49 @@
 <ion-view title="New Goal">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <ion-form>
-            <label class="item item-input">
-                <input type="text" placeholder="What do you want to achieve? eg:'make more pancakes'" ng-model="newGoal.goalTitle">
+        <form name="newGoalForm" ng-submit="addGoal(newGoalForm.$valid)" novalidate>
+
+
+
+
+            <label class="item item-input noBorder">
+                <input type="text" name="goalTitle" placeholder="What do you want to achieve? eg:'make more pancakes'" ng-model="newGoal.goalTitle" required>
             </label>
-            <label class="item item-input">
+            <p ng-show="newGoalForm.goalTitle.$viewValue == '' && !newGoalForm.$pristine" class="centerText help-block">You must give your goal a title</p>
+
+
+
+
+            <label class="item item-input noBorder">
             		<span>Deadline:  </span>
-                <input type="date" placeholder="" ng-model="newGoal.deadline">
+                <input type="date" name='deadline' ng-model="newGoal.deadline">
             </label>
-            <ion-toggle ng-model="newGoal.measurable" toggle-class="toggle-calm" class="no-border">Is this measurable?</ion-toggle>
+
+
+
+            <ion-toggle ng-model="newGoal.measurable" toggle-class="toggle-calm" class="noBorder">Is this measurable?</ion-toggle>
             <div ng-show="newGoal.measurable">
-                <label class="item item-input no-border">
+                <label class="item item-input noBorder">
                     <span class="input-label">Unit of measure: </span>
                     <input type="text" placeholder='eg: "km", "no. of pancakes made"' ng-model="newGoal.measureUnit">
                 </label>
             </div>
+
+
+
             <div>
-                <ion-toggle ng-model="newGoal.hasRegTask" toggle-class="toggle-calm" class="no-border">Is there a task to regularly do?</ion-toggle>
+                <ion-toggle ng-model="newGoal.hasRegTask" toggle-class="toggle-calm" class="noBorder">Is there a task to regularly do?</ion-toggle>
                 <div ng-show="newGoal.hasRegTask">
-                    <label class="item item-input no-border">
+                    <label class="item item-input noBorder">
                         <span class="input-label">Regular task:</span>
                         <input type="text" placeholder='eg: "Make some pancakes"' ng-model="newGoal.subTask">
                     </label>
                 </div>
             </div>
-            <ion-button ng-click="saveGoal()" class='button center'>Add Goal</ion-button>
-        </ion-form>
 
-        {{ newGoal}}
+
+
+            <button type="submit" class='button button-balanced button-block' ng-disabled="!newGoalForm.$valid">Save Goal</button>
+        </form>
+
     </ion-content>
 </ion-view>
