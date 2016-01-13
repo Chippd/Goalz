@@ -6,16 +6,37 @@
                 <p>Sign Up</p>
             </div>
             <ion-list>
+
+
+
+
                 <label class="item item-input">
-<!--                     <span class="input-label">Email</span> -->
-                    <input type="email" ng-model="signupUser.email" placeholder="email">
+                    <input type="email" ng-model="signupUser.email" placeholder="email" required>
                 </label>
+
+
+
+                <div class="form-group">
+                    <label class="item item-input">
+                        <input type="password" name="password" ng-model="signupUser.password" placeholder="password" required ng-minlength="6">
+                    </label>
+                    <p class="centerText" ng-show="signupForm.password.$invalid && !signupForm.password.$pristine" class="help-block">Password must be at least 6 characters long</p>
+                </div>
+
+
+
+
                 <label class="item item-input">
-<!--                     <span class="input-label">Password</span> -->
-                    <input type="password" ng-model="signupUser.password" placeholder="password">
+                    <input type="password" name="passwordMatch" ng-model="signupUser.passwordMatch" placeholder="password" required ng-minlength="6">
                 </label>
+                <p ng-show="signupForm.password.$viewValue != signupForm.passwordMatch.$viewValue  && !signupForm.passwordMatch.$pristine" class="help-block">Passwords must match</p>
+
+
+
+
+
             </ion-list>
-            <button class="button button-balanced button-block " ng-click="signup()">Sign up</button>
+            <button class="button button-balanced button-block" ng-disabled="signupForm.$invalid || signupForm.password.$viewValue !== signupForm.passwordMatch.$viewValue">Sign up</button>
         </form>
         <a href="#/login" class="button button-clear button-block ">I have an account</a>
     </ion-content>

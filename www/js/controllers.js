@@ -14,13 +14,21 @@ angular.module('app.controllers', [])
     $scope.authObj = $firebaseAuth(ref);
 
     $scope.signupUser = {
-    	'email':'',
-    	'password':'',
-    	'uid':''
+        'email': '',
+        'password': '',
+        'uid': ''
     }
 
 
-    $scope.signup = function() {
+    $scope.signup = function(isValid) {
+
+        if (!isValid) {
+            console.log('signup form is not valid, no login for you');
+            return;
+        }
+
+        console.log('signupForm valid, attempting signup');
+
         ref.createUser({
             email: $scope.signupUser.email,
             password: $scope.signupUser.password
