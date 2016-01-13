@@ -1,6 +1,6 @@
 <ion-view title="Signup" hide-nav-bar="true">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header cust-center-ion-content3">
-        <form class="list">
+        <form class="list" name="signupForm" ng-submit="signup(signupForm.$valid)" novalidate>
             <div class="centerText">
                 <h1>Goalz</h1>
                 <p>Sign Up</p>

@@ -51,12 +51,14 @@ angular.module('app.controllers', [])
     }
 
 
-    $scope.login = function(inValid) {
+    $scope.login = function(Valid) {
 
-        if (inValid) {
+        if (!Valid) {
             console.log('form is not valid, no login for you')
             return
         }
+
+        console.log('loginCtrl: logging in')
 
         ref.authWithPassword({
             email: $scope.loginUser.email,
