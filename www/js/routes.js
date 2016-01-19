@@ -70,6 +70,16 @@ angular.module('app.routes', [])
         }
     })
 
+    .state('menu.achievedGoals', {
+      url: '/achievedGoals',
+      views: {
+        'menu-content': {
+          templateUrl: 'templates/achievedGoals.html',
+          controller: 'achievedGoalsCtrl'
+        }
+      }
+    })
+
         
       
     ;

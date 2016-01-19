@@ -1,12 +1,10 @@
 <ion-view title="New Goal">
 
     <ion-nav-buttons side="right">
-      <button class="button noBorder" ng-click="addGoal(_forms.newGoalForm.$valid)" ng-disabled="!_forms.newGoalForm.$valid">
-        Save
-      </button>
+
+      <a class="button button-clear button-dark" ng-click="addGoal(_forms.newGoalForm.$valid)"  ng-disabled="!_forms.newGoalForm.$valid">Save</a>
+      
     </ion-nav-buttons>
-
-
 
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <form name="_forms.newGoalForm" ng-submit="addGoal(_forms.newGoalForm.$valid)" novalidate>

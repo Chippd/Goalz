@@ -98,7 +98,7 @@ angular.module('app.controllers', [])
 	$scope.goals = goals;
 
 	var goalId = $location.url().split('/')[3];
-	console.log('id is:', goalId);
+	//console.log('id is:', goalId);
 
 	$scope.goal = goalsService.getGoal(goalId);
 		
@@ -123,6 +123,7 @@ angular.module('app.controllers', [])
 	    measureUnit: "",
 	    remind: false,
 	    subTask: "",
+	    done: false,
 	    userId: user.uid
 	};
 	
@@ -131,7 +132,6 @@ angular.module('app.controllers', [])
 
 
 	$scope.addGoal = function(isValid){
-		console.log(isValid);
 
 		if(!isValid){
 			console.log('whoops, form is not valid, no new goal for you');
@@ -146,6 +146,10 @@ angular.module('app.controllers', [])
 
 
 	}
+})
+
+.controller('achievedGoalsCtrl', function($scope, $state, $ionicHistory, userService, goals) {
+
 
 
 })
