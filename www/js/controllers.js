@@ -109,8 +109,6 @@ angular.module('app.controllers', [])
 	$scope.goals = goals;
 
 
-
-
 })
       
 .controller('newGoalCtrl', function($scope, $state, $ionicHistory, userService, goals) {
@@ -127,11 +125,13 @@ angular.module('app.controllers', [])
 	    subTask: "",
 	    userId: user.uid
 	};
-	// $scope.newGoalForm;
+	
+	$scope._forms = {};
 	// $scope.navSave = $scope.newGoalForm.$valid
 
 
 	$scope.addGoal = function(isValid){
+		console.log(isValid);
 
 		if(!isValid){
 			console.log('whoops, form is not valid, no new goal for you');

@@ -60,6 +60,7 @@ angular.module('app.routes', [])
       
         
     .state('menu.newGoal', {
+        cache: false,
         url: '/addGoal',
         views: {
             "menu-content": {

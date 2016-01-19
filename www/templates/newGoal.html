@@ -1,15 +1,15 @@
 <ion-view title="New Goal">
 
     <ion-nav-buttons side="right">
-      <button class="button noBorder" ng-click="addGoal(newGoalForm.$valid)" ng-disabled="navSave">
-        Save Goal
+      <button class="button noBorder" ng-click="addGoal(_forms.newGoalForm.$valid)" ng-disabled="!_forms.newGoalForm.$valid">
+        Save
       </button>
     </ion-nav-buttons>
 
 
 
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form name="newGoalForm" ng-submit="addGoal(newGoalForm.$valid)" novalidate>
+        <form name="_forms.newGoalForm" ng-submit="addGoal(_forms.newGoalForm.$valid)" novalidate>
 
 
 
@@ -17,7 +17,7 @@
             <label class="item item-input noBorder">
                 <input type="text" name="goalTitle" placeholder="What do you want to achieve? eg:'make more pancakes'" ng-model="newGoal.goalTitle" required>
             </label>
-            <p ng-show="newGoalForm.goalTitle.$viewValue == '' && !newGoalForm.$pristine" class="centerText help-block">You must give your goal a title</p>
+            <p ng-show="_forms.newGoalForm.goalTitle.$viewValue == '' && !_forms.newGoalForm.$pristine" class="centerText help-block">You must give your goal a title</p>
 
 
 
@@ -51,7 +51,7 @@
 
 
 
-            <button type="submit" class='button button-balanced button-block' ng-disabled="!newGoalForm.$valid">Save Goal</button>
+<!--             <button type="submit" class='button button-balanced button-block' ng-disabled="!_forms.newGoalForm.$valid">Save Goal</button> -->
         </form>
 
     </ion-content>
