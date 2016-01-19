@@ -108,6 +108,17 @@ angular.module('app.controllers', [])
 
 	$scope.goals = goals;
 
+	$scope.loaded = false;
+
+	$scope.goals.$loaded()
+	  .then(function(x) {
+	    console.log('goals loaded');
+	    $scope.loaded = true;
+	  })
+	  .catch(function(error) {
+	    console.log("Error:", error);
+	  });
+
 
 })
       
