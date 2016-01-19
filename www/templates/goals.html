@@ -1,9 +1,13 @@
 <ion-view title="Goals">
+	<ion-nav-buttons side="right">
+	  <button class="button noBorder" ng-click="doSomething()" ui-sref="menu.newGoal">
+	    Add Goal
+	  </button>
+	</ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-list>
             <ion-item ng-href="#/menu/goals/{{goal.$id}}" ng-repeat="goal in goals" class="noBorder">{{ goal.goalTitle }}</ion-item>
         </ion-list>
-        <a ui-sref="menu.newGoal" class="button button-royal button-block ">Add Goal</a>
 <!--         {{ goals }} -->
     </ion-content>
 </ion-view>

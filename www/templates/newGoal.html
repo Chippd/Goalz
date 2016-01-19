@@ -1,4 +1,13 @@
 <ion-view title="New Goal">
+
+    <ion-nav-buttons side="right">
+      <button class="button noBorder" ng-click="addGoal(newGoalForm.$valid)" ng-disabled="navSave">
+        Save Goal
+      </button>
+    </ion-nav-buttons>
+
+
+
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <form name="newGoalForm" ng-submit="addGoal(newGoalForm.$valid)" novalidate>
 

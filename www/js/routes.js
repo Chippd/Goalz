@@ -58,8 +58,6 @@ angular.module('app.routes', [])
     })
 
       
-    
-      
         
     .state('menu.newGoal', {
         url: '/addGoal',

@@ -93,14 +93,23 @@ angular.module('app.controllers', [])
 
 
    
-.controller('goalCtrl', function($scope) {
+.controller('goalCtrl', function($scope, $location, goals, goalsService) {
 
-	
+	$scope.goals = goals;
+
+	var goalId = $location.url().split('/')[3];
+	console.log('id is:', goalId);
+
+	$scope.goal = goalsService.getGoal(goalId);
+		
 })
    
 .controller('goalsCtrl', function($scope, goals) {
 
 	$scope.goals = goals;
+
+
+
 
 })
       
@@ -118,7 +127,8 @@ angular.module('app.controllers', [])
 	    subTask: "",
 	    userId: user.uid
 	};
-
+	// $scope.newGoalForm;
+	// $scope.navSave = $scope.newGoalForm.$valid
 
 
 	$scope.addGoal = function(isValid){

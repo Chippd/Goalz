@@ -16,6 +16,22 @@ angular.module('app.services', [])
   }
 ])
 
+.service('goalsService', ['goals', function(goals){
+
+	return{
+		getGoal: function(id){
+			//match id up to goal in goals array
+			console.log('goalsService: running getGoal')
+			for(i=0; i<= goals.length; i++)
+				if(goals[i].$id == id){
+					return goals[i]
+				}
+		}
+	}
+
+
+
+}])
 
 .service('userService', ['$firebaseAuth', '$state', 'Auth', '$ionicSideMenuDelegate', function($firebaseAuth, $state, $ionicSideMenuDelegate, Auth) {
 
@@ -39,6 +55,10 @@ angular.module('app.services', [])
             console.log('user is set to: ', user);
         },
         checkUser: function() {
+
+        	if(this.getUser()){
+        		return true;
+        	}
 
         	if(Auth._instances.length <= 1){
         		return false
