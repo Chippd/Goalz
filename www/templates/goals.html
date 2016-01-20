@@ -7,12 +7,12 @@
     <ion-content overflow-scroll="true" padding="true" class="has-header">
 
 			<div class="row" ng-show="!loaded">
-				<img src="/img/ball.svg" style="margin:auto">
+				<img src="/img/ball.gif" style="margin:auto">
 			</div>
     	
         <ion-list>
             <ion-item ng-href="#/menu/goals/{{goal.$id}}" ng-repeat="goal in goals" class="noBorder">{{ goal.goalTitle }}</ion-item>
         </ion-list>
-<!--         {{ goals }} -->
+<!--         {{ goals  }} -->
     </ion-content>
 </ion-view>

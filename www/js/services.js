@@ -1,10 +1,14 @@
 angular.module('app.services', [])
 
 .factory("goals", function($firebaseArray, userService) {
-    var goalsRef = new Firebase("https://lifegoalz.firebaseio.com/goalz");
-    var user = userService.getUser();
-    //console.log(user);
-    var goals = $firebaseArray(goalsRef.orderByChild("userId").equalTo(user.uid));
+
+		var user = userService.getUser();
+
+		var dotMail = user.email.replace('.','(DOT)').replace('@',"(AT)");
+
+		var goalsRef = new Firebase("https://lifegoalz.firebaseio.com/users/"+dotMail+"/currentGoals");
+
+		var goals = $firebaseArray(goalsRef);
 
     return goals;
 })

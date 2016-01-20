@@ -8,9 +8,11 @@ angular.module('app.controllers', [])
 })
 
 
-.controller('signupCtrl', function($scope, $firebaseAuth, $state, userService) {
+.controller('signupCtrl', function($scope, $firebaseAuth, $firebaseObject, $state, userService) {
 
-    var ref = new Firebase("https://lifegoalz.firebaseio.com");
+    var ref = new Firebase("https://lifegoalz.firebaseio.com/");
+    var userRef = ref.child('users');
+
     $scope.authObj = $firebaseAuth(ref);
 
     $scope.signupUser = {
@@ -37,12 +39,22 @@ angular.module('app.controllers', [])
                 console.log("Error creating user:", error);
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
+
+                var mail = $scope.signupUser.email.replace(".", "(DOT)").replace('@','(AT)');
+
+                userRef.child(mail).set({
+                    uid: userData.uid,
+                    achievedGoals: [],
+                    currentGoals:[]
+                });
                 userService.setUser($scope.signupUser);
                 $state.go('menu.goals')
             }
         });
     }
 })
+
+
 
    
 .controller('loginCtrl', function($scope, $firebaseAuth, $state, userService) {
@@ -122,7 +134,7 @@ angular.module('app.controllers', [])
 
 })
       
-.controller('newGoalCtrl', function($scope, $state, $ionicHistory, userService, goals) {
+.controller('newGoalCtrl', function($scope, $state, $ionicHistory, $firebaseArray, userService, goals) {
 
 	var user = userService.getUser();
 
@@ -139,7 +151,14 @@ angular.module('app.controllers', [])
 	};
 	
 	$scope._forms = {};
-	// $scope.navSave = $scope.newGoalForm.$valid
+
+	//array for currentGoals will be at url/[useremailwith(DOT)]/currentGoals
+
+	var dotMail = user.email.replace('.','(DOT)').replace('@',"(AT)");
+
+	var goalsRef = new Firebase("https://lifegoalz.firebaseio.com/users/"+dotMail+"/currentGoals");
+
+	var currentGoals = $firebaseArray(goalsRef);
 
 
 	$scope.addGoal = function(isValid){
@@ -149,7 +168,7 @@ angular.module('app.controllers', [])
 			return
 		}
 
-		goals.$add($scope.newGoal);
+		currentGoals.$add($scope.newGoal);
 		$ionicHistory.nextViewOptions({
 		  disableBack: true
 		});
