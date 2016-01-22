@@ -36,6 +36,7 @@ angular.module('app.routes', [])
 
 
     .state('menu.goals', {
+      cache: false,
       url: '/goals',
       views: {
         'menu-content': {

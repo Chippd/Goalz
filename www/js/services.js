@@ -13,6 +13,20 @@ angular.module('app.services', [])
     return goals;
 })
 
+.factory('achievedGoals', function($firebaseArray, userService) {
+
+    var user = userService.getUser();
+
+    var dotMail = user.email.replace('.', '(DOT)').replace('@', "(AT)");
+
+    var goalsRef = new Firebase("https://lifegoalz.firebaseio.com/users/" + dotMail + "/achievedGoals");
+
+    var achievedGoals = $firebaseArray(goalsRef);
+
+    return achievedGoals
+})
+
+
 .factory("Auth", ["$firebaseAuth",
   function($firebaseAuth) {
     var ref = new Firebase("https://lifegoalz.firebaseio.com");

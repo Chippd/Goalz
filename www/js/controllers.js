@@ -71,6 +71,9 @@ angular.module('app.controllers', [])
         $state.go('menu.goals');
     }
 
+    $scope.loading = false;
+    $scope.loginError = '';
+
 
     $scope.login = function(Valid) {
 
@@ -78,6 +81,8 @@ angular.module('app.controllers', [])
             console.log('form is not valid, no login for you')
             return
         }
+
+        $scope.loading = true;
 
         console.log('loginCtrl: logging in')
 
@@ -87,12 +92,13 @@ angular.module('app.controllers', [])
         }, function(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
-                alert(error);
+                $scope.loginError = error;
+                $scope.loading = false;
             } else {
                 $scope.loginUser.uid = authData.uid;
                 userService.setUser($scope.loginUser);
                 console.log("Authenticated successfully with payload:", authData);
-                $state.go('menu.goals')
+                $state.go('menu.goals');
             }
         });
     }
@@ -105,14 +111,52 @@ angular.module('app.controllers', [])
 
 
    
-.controller('goalCtrl', function($scope, $location, goals, goalsService) {
+.controller('goalCtrl', function($scope, $location, $state, goals, goalsService, achievedGoals) {
 
 	$scope.goals = goals;
 
 	var goalId = $location.url().split('/')[3];
 	//console.log('id is:', goalId);
 
-	$scope.goal = goalsService.getGoal(goalId);
+	$scope.loaded = false;
+
+	$scope.goals.$loaded()
+		.then(function(x){
+			$scope.loaded = true;
+			$scope.goal = goalsService.getGoal(goalId);
+			//console.log(goals)
+		})
+		.catch(function(error){
+			console.log("Error:", error);
+		});
+
+		var currentGoalsArray = goals;
+
+		var achievedGoalsArray = achievedGoals;
+
+
+	$scope.markDone = function(){
+		//pressing this button will remove this task from goals array and push it to achieved goals array
+		console.log('running markDone()');
+		currentGoalsArray.$remove($scope.goal)
+			.then(function(){
+				console.log('goal removed from currentGoals');
+			})
+			.catch(function(error){
+				console.log('error:',error)
+			});
+
+		achievedGoalsArray.$add($scope.goal)
+			.then(function(){
+				console.log('goal added to achievedGoals');
+				$state.go('menu.goals');
+			})
+			.catch(function(error){
+				console.log('error:',error)
+			});;
+
+
+	}
 		
 })
    
@@ -122,10 +166,15 @@ angular.module('app.controllers', [])
 
 	$scope.loaded = false;
 
+	$scope.noGoals = false;
+
 	$scope.goals.$loaded()
 	  .then(function(x) {
 	    console.log('goals loaded');
 	    $scope.loaded = true;
+	    if ($scope.goals.length === 0) {
+	    	$scope.noGoals = true;
+	    };
 	  })
 	  .catch(function(error) {
 	    console.log("Error:", error);
@@ -145,20 +194,16 @@ angular.module('app.controllers', [])
 	    measurable: false,
 	    measureUnit: "",
 	    remind: false,
-	    subTask: "",
-	    done: false,
-	    userId: user.uid
+	    subTask: ""
 	};
 	
 	$scope._forms = {};
 
-	//array for currentGoals will be at url/[useremailwith(DOT)]/currentGoals
+	// var dotMail = user.email.replace('.','(DOT)').replace('@',"(AT)");
 
-	var dotMail = user.email.replace('.','(DOT)').replace('@',"(AT)");
+	// var goalsRef = new Firebase("https://lifegoalz.firebaseio.com/users/"+dotMail+"/currentGoals");
 
-	var goalsRef = new Firebase("https://lifegoalz.firebaseio.com/users/"+dotMail+"/currentGoals");
-
-	var currentGoals = $firebaseArray(goalsRef);
+	var currentGoals = goals;
 
 
 	$scope.addGoal = function(isValid){
@@ -178,9 +223,20 @@ angular.module('app.controllers', [])
 	}
 })
 
-.controller('achievedGoalsCtrl', function($scope, $state, $ionicHistory, userService, goals) {
+.controller('achievedGoalsCtrl', function($scope, $state, $ionicHistory, userService, goals, achievedGoals) {
 
+	$scope.goals = achievedGoals;
 
+	$scope.loaded = false;
+
+	$scope.goals.$loaded()
+	  .then(function(x) {
+	    console.log('goals loaded');
+	    $scope.loaded = true;
+	  })
+	  .catch(function(error) {
+	    console.log("Error:", error);
+	  });
 
 })
  

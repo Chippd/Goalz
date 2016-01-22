@@ -3,23 +3,24 @@
 
 		<ion-nav-buttons side="right">
 
-      <a class="button button-clear button-dark" ng-click="">Mark Done</a>
+      <a class="button button-clear button-dark" ng-click="markDone()">Mark Done</a>
       
     </ion-nav-buttons>
 
 
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <ion-content overflow-scroll="true" padding="true" class="has-header" style="text-align:center">
+				<div class="row" ng-show="!loaded">
+						<img src="/img/ball.gif" style="margin:auto">
+				</div>
         <h1>{{goal.goalTitle}}</h1>
+				
+				<h3 ng-show="loaded" style="margin-top:25px">Subtask</h3>
+        <p>{{	goal.subTask}}</p>
         
-        <ion-list></ion-list>
+        
 
-        {{goal}}
+     <!--    <pre>{{goal | json}}</pre> -->
     </ion-content>
-
-
-
-
-
 
 
 </ion-view>

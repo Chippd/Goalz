@@ -4,14 +4,25 @@
 	    Add Goal
 	  </a>
 	</ion-nav-buttons>
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <ion-content overflow-scroll="true" padding="true" class="has-header cust-center-ion-content3" style="text-align:center">
 
 			<div class="row" ng-show="!loaded">
 				<img src="/img/ball.gif" style="margin:auto">
 			</div>
+
+			<div class="row" ng-show="noGoals">
+				<h2>You've got no active goals here, add one by pressing "Add Goal" in the top right of this screen</h2>
+			</div>
     	
         <ion-list>
-            <ion-item ng-href="#/menu/goals/{{goal.$id}}" ng-repeat="goal in goals" class="noBorder">{{ goal.goalTitle }}</ion-item>
+            <ion-item ng-href="#/menu/goals/{{goal.$id}}" ng-repeat="goal in goals" class=" goals noBorder">
+            
+            <h1 style="padding:0 !important">
+            	{{ goal.goalTitle }}
+            </h1>
+            
+
+            </ion-item>
         </ion-list>
 <!--         {{ goals  }} -->
     </ion-content>

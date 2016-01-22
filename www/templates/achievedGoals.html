@@ -8,9 +8,23 @@
     </ion-nav-buttons> -->
 
 
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <h1>Goals that have been achieved</h1>
-        
+     <ion-content overflow-scroll="true" padding="true" class="has-header" style="text-align:center">
+
+			<div class="row" ng-show="!loaded">
+				<img src="/img/ball.gif" style="margin:auto">
+			</div>
+    	
+        <ion-list>
+            <ion-item ng-href="#" ng-repeat="goal in goals" class=" goals noBorder">
+            
+            <h1 style="padding:0 !important">
+            	{{ goal.goalTitle }}
+            </h1>
+            
+
+            </ion-item>
+        </ion-list>
+<!--         {{ goals  }} -->
     </ion-content>
 
 
