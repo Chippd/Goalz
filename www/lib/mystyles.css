@@ -1,3 +1,21 @@
+
+.bar-header {
+	height:55px;
+}
+
+.bar-header .title {
+	line-height:55px;
+}
+
+.bar-header .right-buttons a {
+	line-height: 45px;
+}
+
+.has-header {
+	top:55px;
+}
+
+
 .centerText {
 	text-align: center !important;
 }
