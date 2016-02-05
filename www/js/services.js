@@ -60,6 +60,9 @@ angular.module('app.services', [])
     return {
         getUser: function() {
             console.log('userService: running getUser');
+            if(user === null){
+                return false
+            }
             if (Object.keys(user).length == 0) {
                 var userRef = localStorage.getItem('user');
                 user = JSON.parse(userRef);

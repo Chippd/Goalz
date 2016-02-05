@@ -8,11 +8,11 @@
     </ion-nav-buttons> -->
 
 
-     <ion-content overflow-scroll="true" padding="true" class="has-header" style="text-align:center">
+     <ion-content overflow-scroll="true" padding="true" class="has-header lightPurple" style="text-align:center">
 
-			<div class="row" ng-show="!loaded">
-				<img src="/img/ball.gif" style="margin:auto">
-			</div>
+			<div class="row centerText" ng-show="!loaded">
+                <ion-spinner icon="dots" style="margin:auto"></ion-spinner>
+            </div>
     	
         <ion-list>
             <ion-item ng-href="#" ng-repeat="goal in goals" class=" goals noBorder">

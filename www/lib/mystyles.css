@@ -19,6 +19,101 @@ h1,h2,h3,h4,h5 {
 }
 
 
-.goals .item-content {
-  padding: 10px 0 !important;
+.goals {
+  padding: 5px 0 !important;
+  background-color: white;
+	border-radius: 5px;
+	margin-bottom: 10px
 }
+
+.goals .item-content {
+	background: none;
+}
+
+.goals .item-content h1 {
+	color:  #4B2142 ;
+}
+
+
+.lightPurple {
+	background-color: #816E94 !important;
+/*	background: rgba(116,34,108,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(116,34,108,1)), color-stop(100%, rgba(75,33,66,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#74226c', endColorstr='#4b2142', GradientType=1 );*/
+}
+
+.side-menu-left, .side-menu-left a {
+	background-color: #816E94 !important;
+	color:white;
+}
+
+.side-menu-left ion-item {
+		border: none
+}
+
+
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #444;
+  fill: #fbfbfb;
+}
+
+
+
+.loginSignup {
+	background: rgba(116,34,108,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(116,34,108,1)), color-stop(100%, rgba(75,33,66,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(116,34,108,1) 0%, rgba(75,33,66,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#74226c', endColorstr='#4b2142', GradientType=1 );
+	
+}
+
+.loginSignup h1, .loginSignup p {
+	color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
