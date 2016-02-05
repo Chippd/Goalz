@@ -4,7 +4,7 @@
 	    Add Goal
 	  </a>
 	</ion-nav-buttons>
-    <ion-content overflow-scroll="true" padding="true" class="has-header cust-center-ion-content3 lightPurple" style="text-align:center">
+    <ion-content overflow-scroll="true" padding="true" class="has-header cust-center-ion-content3 gradBG" style="text-align:center">
 
 			<div class="row centerText" ng-show="!loaded">
 				<ion-spinner icon="dots" style="margin:auto"></ion-spinner>
@@ -15,7 +15,7 @@
 			</div>
     	
         <ion-list>
-            <ion-item ng-href="#/menu/goals/{{goal.$id}}" ng-repeat="goal in goals" class=" goals noBorder">
+            <ion-item ng-href="#/menu/goals/{{goal.$id}}" ng-repeat="goal in goals" class="goals noBorder">
             
             <h1 style="padding:0 !important">
             	{{ goal.goalTitle }}

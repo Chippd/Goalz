@@ -111,7 +111,7 @@ angular.module('app.controllers', [])
 
 
    
-.controller('goalCtrl', function($scope, $location, $state, goals, goalsService, achievedGoals) {
+.controller('goalCtrl', function($scope, $location, $state, goals, goalsService, achievedGoals, ionicToast) {
 
 	$scope.goals = goals;
 
@@ -135,28 +135,29 @@ angular.module('app.controllers', [])
 		var achievedGoalsArray = achievedGoals;
 
 
-	$scope.markDone = function(){
-		//pressing this button will remove this task from goals array and push it to achieved goals array
-		console.log('running markDone()');
-		currentGoalsArray.$remove($scope.goal)
-			.then(function(){
-				console.log('goal removed from currentGoals');
-			})
-			.catch(function(error){
-				console.log('error:',error)
-			});
-
-		achievedGoalsArray.$add($scope.goal)
-			.then(function(){
-				console.log('goal added to achievedGoals');
-				$state.go('menu.goals');
-			})
-			.catch(function(error){
-				console.log('error:',error)
-			});;
+	$scope.markDone = function() {
+	    //pressing this button will remove this task from goals array and push it to achieved goals array
+	    console.log('running markDone()');
+	    currentGoalsArray.$remove($scope.goal)
+	        .then(function() {
+	            console.log('goal removed from currentGoals');
+	            achievedGoalsArray.$add($scope.goal)
+	                .then(function() {
+	                    console.log('goal added to achievedGoals');
+	                    ionicToast.show('Goal marked as complete!', 'bottom', false, 2500);
+	                    $state.go('menu.goals');
+	                })
+	                .catch(function(error) {
+	                    console.log('error:', error)
+	                });;
+	        })
+	        .catch(function(error) {
+	            console.log('error:', error)
+	        });
 
 
 	}
+
 		
 })
    
@@ -183,7 +184,7 @@ angular.module('app.controllers', [])
 
 })
       
-.controller('newGoalCtrl', function($scope, $state, $ionicHistory, $firebaseArray, userService, goals) {
+.controller('newGoalCtrl', function($scope, $state, $ionicHistory, $firebaseArray, userService, goals, ionicToast) {
 
 	var user = userService.getUser();
 
@@ -214,6 +215,9 @@ angular.module('app.controllers', [])
 		}
 
 		currentGoals.$add($scope.newGoal);
+
+		ionicToast.show('Goal added!', 'bottom', false, 2500);
+
 		$ionicHistory.nextViewOptions({
 		  disableBack: true
 		});
